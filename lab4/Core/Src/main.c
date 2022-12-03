@@ -82,11 +82,20 @@ void led2test(){
 }
 void led3test(){
 	HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+	HAL_UART_Transmit(&huart2 ,(void*)str,sprintf(str,"Time stand: %d led3test \r\n"
+				  		,time_stand),1000) ;
+
 }
 int count=0;
 void led7seg(){
 	if(count>=10) count=0;
 	display_led7_seg(count++);
+	HAL_UART_Transmit(&huart2 ,(void*)str,sprintf(str,"Time stand: %d led7seg \r\n"
+					  		,time_stand),1000) ;
+}
+void printHelloWorld(){
+	HAL_UART_Transmit(&huart2 ,(void*)str,sprintf(str,"Time stand: %d Hello World! \r\n"
+						  		,time_stand),1000) ;
 }
 /* USER CODE END 0 */
 
@@ -127,9 +136,10 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   SCH_Add_Task(led7seg,0,100);
-  SCH_Add_Task(led1test,0,50);
-  SCH_Add_Task(led2test,5,200);
-  SCH_Add_Task(led3test,10,150);
+  SCH_Add_Task(led1test,5,50);
+  SCH_Add_Task(led2test,10,200);
+  SCH_Add_Task(led3test,15,150);
+  SCH_Add_Task(printHelloWorld, 20, 200);
   setTimer1(500);
   while (1)
   {
