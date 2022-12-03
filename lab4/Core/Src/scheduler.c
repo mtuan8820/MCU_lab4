@@ -44,3 +44,15 @@ void SCH_Dispatch_Tasks(void){
 		}
 	}
 }
+
+void SCH_Delete_Task(uint32_t taskID){
+	if(taskID>=current_index_task) return ;
+
+	SCH_tasks_G[taskID].pTask = 0x0000;
+	SCH_tasks_G[taskID].Delay = 0;
+	SCH_tasks_G[taskID].Period =  0;
+	SCH_tasks_G[taskID].RunMe = 0;
+
+	return ;
+
+}

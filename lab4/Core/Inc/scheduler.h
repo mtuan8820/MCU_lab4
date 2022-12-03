@@ -30,5 +30,7 @@ void SCH_Update(void);
 
 void SCH_Dispatch_Tasks(void);
 
+void SCH_Delete_Task(uint32_t taskID);
+
 
 #endif /* INC_SCHEDULER_H_ */
